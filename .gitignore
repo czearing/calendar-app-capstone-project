@@ -22,10 +22,12 @@ out
 .env.build
 
 # Dependencies
+.yarn
 node_modules
 .pnp
 .pnp.js
-.pnp-loader.mjs
+.pnp.cjs
+.pnp.loader.mjs
 package-lock.json
 
 # Production
