@@ -1,2 +1,1 @@
-export { AppContainer } from "./AppContainer";
-export { Calendar } from "./Calendar";
+export * from "./AppContainer";

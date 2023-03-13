@@ -23,5 +23,5 @@
     "resolveJsonModule": true,
     "isolatedModules": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "../shopify-app/src/pages/_documnet.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }

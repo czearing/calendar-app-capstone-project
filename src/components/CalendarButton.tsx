@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button } from "@cebus/react-components";
+import { Button } from "@fluentui/react-components";
 
 export const CalendarButton = (props: any) => {
   const { date } = props;

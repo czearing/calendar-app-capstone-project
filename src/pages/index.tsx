@@ -1,13 +1,14 @@
-import * as React from "react";
-import type { NextPage } from "next";
-import { Calendar } from "../components";
+import { Button } from "@fluentui/react-components";
+import Link from "next/link";
 
-const Home: NextPage = () => {
-  return (
-    <>
-      <Calendar />
-    </>
-  );
-};
+const IndexPage = () => (
+  <div>
+    <h1>Hello Next.js 👋</h1>
+    <p>
+      <Link href="/about">About</Link>
+      <Button>Hello</Button>
+    </p>
+  </div>
+);
 
-export default Home;
+export default IndexPage;
