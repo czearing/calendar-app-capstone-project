@@ -1,14 +1,18 @@
-import { Button } from "@fluentui/react-components";
-import Link from "next/link";
+import * as React from "react";
+import { DateProvider } from "../context";
+import { Calendar } from "../components";
+import { CalendarToolbar } from "../components";
+import { getDateMonthYear } from "../utils";
 
-const IndexPage = () => (
-  <div>
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">About</Link>
-      <Button>Hello</Button>
-    </p>
-  </div>
-);
+const IndexPage = () => {
+  const [date, setDate] = React.useState(getDateMonthYear());
+
+  return (
+    <DateProvider value={{ date, setDate }}>
+      <CalendarToolbar />
+      <Calendar />
+    </DateProvider>
+  );
+};
 
 export default IndexPage;

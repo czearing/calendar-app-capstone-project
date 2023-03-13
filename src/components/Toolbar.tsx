@@ -45,6 +45,13 @@ const useToolbarStyles = makeStyles({
     textDecorationLine: "none",
     color: tokens.colorNeutralForeground1,
   },
+  grow: {
+    width: "100%",
+    height: "100%",
+    ["> *" as any]: {
+      flexGrow: 1,
+    },
+  },
 });
 
 export const Toolbar = () => {
@@ -79,15 +86,7 @@ export const Toolbar = () => {
           </Text>
         </a>
       </Link>
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          ["> *" as any]: {
-            flexGrow: 1,
-          },
-        }}
-      />
+      <div className={toolbarStyles.grow} />
       <Menu inline>
         <MenuTrigger>
           <Button

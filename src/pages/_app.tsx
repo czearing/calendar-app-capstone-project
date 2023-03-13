@@ -64,6 +64,7 @@ export default function App(props: AppProps) {
             background-color: ${theme.colorNeutralBackground1};
             padding: 0px;
             margin: 0px;
+            overflow-x: hidden;
           }
         `}</style>
         <RendererProvider renderer={pageProps.renderer || createDOMRenderer()}>
