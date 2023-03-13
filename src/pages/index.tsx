@@ -5,7 +5,6 @@ import { Calendar } from "../components";
 const Home: NextPage = () => {
   return (
     <>
-      Hello World
       <Calendar />
     </>
   );
