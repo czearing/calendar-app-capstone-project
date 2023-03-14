@@ -2,10 +2,10 @@ import * as React from "react";
 import { DateProvider } from "../context";
 import { Calendar } from "../components";
 import { CalendarToolbar } from "../components";
-import { getDateMonthYear } from "../utils";
+import { getCurrentDayMonthYear } from "../utils";
 
 const IndexPage = () => {
-  const [date, setDate] = React.useState(getDateMonthYear());
+  const [date, setDate] = React.useState(getCurrentDayMonthYear());
 
   return (
     <DateProvider value={{ date, setDate }}>

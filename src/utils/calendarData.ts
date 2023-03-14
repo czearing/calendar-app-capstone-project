@@ -31,4 +31,4 @@ export const monthNames: MonthNames[] = [
   "December",
 ];
 
-export type DateMonthYear = { day: number; month: MonthNames; year: number };
+export type DateMonthYear = { day: number; month: number; year: number };

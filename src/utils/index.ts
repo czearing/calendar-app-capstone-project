@@ -5,4 +5,4 @@ export * from "./calendarData";
 export * from "./useLocalDefault";
 export * from "./useThemeDetector";
 export * from "./useGetLocal";
-export * from "./getDateMonthYear";
+export * from "./getCurrentDayMonthYear";

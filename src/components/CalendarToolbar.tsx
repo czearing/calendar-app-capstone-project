@@ -6,6 +6,7 @@ import {
   Toolbar as ToolbarComponent,
 } from "@fluentui/react-components";
 import { makeStyles, shorthands } from "@griffel/react";
+import { monthNames, getCurrentDayMonthYear } from "../utils";
 import { tokens } from "@fluentui/react-theme";
 import { useDate } from "../context";
 
@@ -36,13 +37,49 @@ export const CalendarToolbar = () => {
   const { date, setDate } = useDate();
   const calendarToolbarStyles = useCalendarToolbarStyles();
 
+  const resetDate = React.useCallback(() => {
+    setDate(getCurrentDayMonthYear());
+  }, [setDate]);
+
+  const decrementMonth = React.useCallback(() => {
+    setDate((prevDate) => {
+      const currentDate = new Date(
+        prevDate.year,
+        prevDate.month - 1,
+        prevDate.day
+      );
+      const day = currentDate.getDate();
+      const month = currentDate.getMonth();
+      const year = currentDate.getFullYear();
+
+      return { day, month, year };
+    });
+  }, [setDate]);
+
+  const incrementMonth = React.useCallback(() => {
+    setDate((prevDate) => {
+      const currentDate = new Date(
+        prevDate.year,
+        prevDate.month + 1,
+        prevDate.day
+      );
+      const day = currentDate.getDate();
+      const month = currentDate.getMonth();
+      const year = currentDate.getFullYear();
+
+      return { day, month, year };
+    });
+  }, [setDate]);
+
   return (
     <ToolbarComponent className={calendarToolbarStyles.root}>
-      <Button size="medium">Today</Button>
-      <Button icon={"<"} />
-      <Button icon={">"} />
+      <Button onClick={resetDate} size="medium">
+        Today
+      </Button>
+      <Button onClick={decrementMonth} icon={"<"} />
+      <Button onClick={incrementMonth} icon={">"} />
       <Text weight="bold">
-        {date.month} {date.year}
+        {monthNames[date.month]} {date.year}
       </Text>
       <div className={calendarToolbarStyles.grow} />
       <ToggleButton>Day</ToggleButton>

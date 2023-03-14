@@ -7,7 +7,7 @@ export type DateContextValue = {
 };
 
 export const DateContext = React.createContext<DateContextValue>({
-  date: { day: 0, month: "January", year: 0 },
+  date: { day: 0, month: 0, year: 0 },
   setDate: () => {},
 });
 

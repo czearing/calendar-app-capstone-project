@@ -1,35 +1,23 @@
 import * as React from "react";
 import {
-  monthNames,
   daysOfWeek,
   getFirstDayOfMonth,
   getDaysInMonth,
   getDaysInPreviousMonth,
 } from "../utils";
+import { useDate } from "../context";
 
 export const Calendar = () => {
-  const [date, setDate] = React.useState(new Date());
+  const { date } = useDate();
   const calendarRef = React.useRef(null);
 
-  const renderedMonth = date.getMonth();
-  const renderedYear = date.getFullYear();
+  const renderedMonth = date.month;
+  const renderedYear = date.year;
 
   const currentDate = new Date();
   const currentDay = currentDate.getDate();
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
-
-  const decrementMonth = React.useCallback(() => {
-    setDate(
-      (prevDate) => new Date(prevDate.getFullYear(), prevDate.getMonth() - 1, 1)
-    );
-  }, []);
-
-  const incrementMonth = React.useCallback(() => {
-    setDate(
-      (prevDate) => new Date(prevDate.getFullYear(), prevDate.getMonth() + 1, 1)
-    );
-  }, []);
 
   // Calculate the necessary date information for the calendar.
   const firstDayOfMonth = getFirstDayOfMonth(renderedMonth, renderedYear);
@@ -86,11 +74,6 @@ export const Calendar = () => {
 
   return (
     <div>
-      <h1>
-        {monthNames[renderedMonth]} {renderedYear}
-      </h1>
-      <button onClick={decrementMonth}>Previous Month</button>
-      <button onClick={incrementMonth}>Next Month</button>
       <table ref={calendarRef}>
         <thead>
           <tr>
