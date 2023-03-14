@@ -1,10 +1,15 @@
 import React from "react";
 import {
   Text,
-  ToggleButton,
+  TabList,
+  Tab,
   Button,
   Toolbar as ToolbarComponent,
 } from "@fluentui/react-components";
+import {
+  ChevronDown24Regular,
+  ChevronUp24Regular,
+} from "@fluentui/react-icons";
 import { makeStyles, shorthands } from "@griffel/react";
 import { monthNames, getCurrentDayMonthYear } from "../utils";
 import { tokens } from "@fluentui/react-theme";
@@ -36,6 +41,14 @@ const useCalendarToolbarStyles = makeStyles({
 export const CalendarToolbar = () => {
   const { date, setDate } = useDate();
   const calendarToolbarStyles = useCalendarToolbarStyles();
+
+  const [selectedValue, setSelectedValue] = React.useState("month");
+
+  const currentDate = getCurrentDayMonthYear();
+
+  const onTabSelect = (event, data) => {
+    setSelectedValue(data.value);
+  };
 
   const resetDate = React.useCallback(() => {
     setDate(getCurrentDayMonthYear());
@@ -73,18 +86,42 @@ export const CalendarToolbar = () => {
 
   return (
     <ToolbarComponent className={calendarToolbarStyles.root}>
-      <Button onClick={resetDate} size="medium">
-        Today
-      </Button>
-      <Button onClick={decrementMonth} icon={"<"} />
-      <Button onClick={incrementMonth} icon={">"} />
-      <Text weight="bold">
+      <Text size={500} weight="bold" wrap={false} style={{ minWidth: "180px" }}>
         {monthNames[date.month]} {date.year}
       </Text>
+      {/* <div className={calendarToolbarStyles.grow} /> */}
+      {/* <TabList
+        appearance="subtle"
+        selectedValue={selectedValue}
+        onTabSelect={onTabSelect}
+      >
+        <Tab value="day">Day</Tab>
+        <Tab value="month">Month</Tab>
+        <Tab value="year">Year</Tab>
+      </TabList> */}
       <div className={calendarToolbarStyles.grow} />
-      <ToggleButton>Day</ToggleButton>
-      <ToggleButton>Week</ToggleButton>
-      <ToggleButton>Month</ToggleButton>
+      <Button
+        onClick={resetDate}
+        size="medium"
+        appearance="subtle"
+        disabled={
+          currentDate.year === date.year &&
+          currentDate.month === date.month &&
+          currentDate.day === date.day
+        }
+      >
+        Today
+      </Button>
+      <Button
+        appearance="subtle"
+        onClick={decrementMonth}
+        icon={<ChevronUp24Regular />}
+      />
+      <Button
+        appearance="subtle"
+        onClick={incrementMonth}
+        icon={<ChevronDown24Regular />}
+      />
     </ToolbarComponent>
   );
 };

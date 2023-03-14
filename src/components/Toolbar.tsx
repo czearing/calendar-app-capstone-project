@@ -38,8 +38,7 @@ const useToolbarStyles = makeStyles({
     boxSizing: "border-box",
     flexShrink: 0,
     zIndex: 10000,
-    ...shorthands.borderBottom("1px", "solid", tokens.colorNeutralStroke1),
-    backgroundColor: tokens.colorNeutralBackground1,
+    backgroundColor: tokens.colorBrandBackground2,
   },
   linkStyles: {
     textDecorationLine: "none",
@@ -81,8 +80,8 @@ export const Toolbar = () => {
     <ToolbarComponent className={toolbarStyles.root}>
       <Link href="/" passHref>
         <a className={toolbarStyles.linkStyles}>
-          <Text size={500} weight="bold" wrap={false}>
-            Calendar App
+          <Text size={500} wrap={false}>
+            Calendar
           </Text>
         </a>
       </Link>

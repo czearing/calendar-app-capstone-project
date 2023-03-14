@@ -1,6 +1,6 @@
 import * as React from "react";
 import { DateProvider } from "../context";
-import { Calendar } from "../components";
+import { MonthCalendarView } from "../components";
 import { CalendarToolbar } from "../components";
 import { getCurrentDayMonthYear } from "../utils";
 
@@ -10,7 +10,7 @@ const IndexPage = () => {
   return (
     <DateProvider value={{ date, setDate }}>
       <CalendarToolbar />
-      <Calendar />
+      <MonthCalendarView />
     </DateProvider>
   );
 };

@@ -54,14 +54,14 @@ export default function App(props: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <Head>
-          <title>czearing</title>
-          <meta name="title" content="czearing" />
+          <title>Calendar App</title>
+          <meta name="title" content="Calendar App" />
           <meta name="description" content="My personal blog." />
           <link rel="icon" type="image/svg+xml" href="/image/favicon.svg" />
         </Head>
         <style jsx global>{`
           body {
-            background-color: ${theme.colorNeutralBackground1};
+            background-color: ${theme.colorNeutralBackground2};
             padding: 0px;
             margin: 0px;
             overflow-x: hidden;
