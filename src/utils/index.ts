@@ -6,3 +6,4 @@ export * from "./useLocalDefault";
 export * from "./useThemeDetector";
 export * from "./useGetLocal";
 export * from "./getCurrentDayMonthYear";
+export * from "./useWindowSize";

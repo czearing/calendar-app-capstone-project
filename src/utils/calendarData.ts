@@ -1,6 +1,24 @@
-export type DaysOfWeek = "S" | "M" | "T" | "W" | "T" | "F" | "S";
+export const daysOfWeekSmall: string[] = ["S", "M", "T", "W", "T", "F", "S"];
 
-export const daysOfWeek = ["S", "M", "T", "W", "T", "F", "S"];
+export const daysOfWeekMedium: string[] = [
+  "Sun",
+  "Mon",
+  "Tue",
+  "Wed",
+  "Thr",
+  "Fri",
+  "Sat",
+];
+
+export const daysOfWeekLarge: string[] = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
 
 export type MonthNames =
   | "January"

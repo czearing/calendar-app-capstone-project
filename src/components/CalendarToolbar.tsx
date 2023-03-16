@@ -42,13 +42,7 @@ export const CalendarToolbar = () => {
   const { date, setDate } = useDate();
   const calendarToolbarStyles = useCalendarToolbarStyles();
 
-  const [selectedValue, setSelectedValue] = React.useState("month");
-
   const currentDate = getCurrentDayMonthYear();
-
-  const onTabSelect = (event, data) => {
-    setSelectedValue(data.value);
-  };
 
   const resetDate = React.useCallback(() => {
     setDate(getCurrentDayMonthYear());

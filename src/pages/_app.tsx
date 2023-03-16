@@ -10,14 +10,16 @@ import Head from "next/head";
 import { SSRProvider } from "@fluentui/react-utilities";
 import { RendererProvider, createDOMRenderer } from "@griffel/react";
 import { QueryClientProvider } from "react-query";
-import { AppProvider } from "../context";
+import { AppProvider, WindowSizeProvider } from "../context";
 import { Hydrate } from "react-query/hydration";
 import { queryClient } from "../clients/react-query";
 import { AppContainer } from "../components";
+import { useWindowSize } from "../utils";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props as any;
   const isDarkTheme = useThemeDetector();
+  const windowSize = useWindowSize();
 
   const [isMounted, setIsMounted] = React.useState(false);
 
@@ -72,9 +74,11 @@ export default function App(props: AppProps) {
             <AppProvider value={{ setTheme, findTheme }}>
               {isMounted && (
                 <FluentProvider theme={theme}>
-                  <AppContainer>
-                    <Component {...pageProps} />
-                  </AppContainer>
+                  <WindowSizeProvider value={windowSize}>
+                    <AppContainer>
+                      <Component {...pageProps} />
+                    </AppContainer>
+                  </WindowSizeProvider>
                 </FluentProvider>
               )}
             </AppProvider>
