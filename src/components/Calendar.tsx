@@ -1,6 +1,5 @@
 import * as React from "react";
 import {
-  daysOfWeek,
   getFirstDayOfMonth,
   getDaysInMonth,
   getDaysInPreviousMonth,
@@ -77,9 +76,9 @@ export const Calendar = () => {
       <table ref={calendarRef}>
         <thead>
           <tr>
-            {daysOfWeek.map((day) => (
+            {/* {daysOfWeek.map((day) => (
               <th key={day}>{day}</th>
-            ))}
+            ))} */}
           </tr>
         </thead>
         <tbody>{rows}</tbody>
