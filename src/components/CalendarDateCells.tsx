@@ -6,8 +6,9 @@ import {
 } from "../utils";
 import { tokens } from "@fluentui/react-theme";
 import type { DateMonthYear } from "../utils";
-import { Text } from "@fluentui/react-components";
+import { CalendarCell } from "./CalendarCell";
 import { makeStyles, shorthands } from "@griffel/react";
+import { getCurrentDayMonthYear } from "../utils";
 
 const useCalendarDateCellsStyles = makeStyles({
   calendarTable: {
@@ -30,25 +31,6 @@ const useCalendarDateCellsStyles = makeStyles({
   },
 });
 
-const CalendarCellStyles: React.CSSProperties = {
-  minHeight: "100px",
-  height: "100%",
-  minWidth: "60px",
-  verticalAlign: "top",
-  padding: "8px",
-  boxSizing: "border-box",
-};
-
-const CalendarCell = (props: { day: number; cellType: string }) => {
-  const { day, cellType } = props;
-
-  return (
-    <div key={day + "-" + cellType} style={CalendarCellStyles}>
-      <Text>{day}</Text>
-    </div>
-  );
-};
-
 export const CalendarDateCells = (props: { date: DateMonthYear }) => {
   const { date } = props;
   const calendarDateCellsStyles = useCalendarDateCellsStyles();
@@ -57,6 +39,8 @@ export const CalendarDateCells = (props: { date: DateMonthYear }) => {
   const renderedYear = date.year;
 
   // Calculate the necessary date information for the calendar.
+  const currentDate = getCurrentDayMonthYear();
+
   const firstDayOfMonth = getFirstDayOfMonth(renderedMonth, renderedYear);
   const daysInMonth = getDaysInMonth(renderedMonth, renderedYear);
   const daysInPrevMonth = getDaysInPreviousMonth(renderedMonth, renderedYear);
@@ -76,7 +60,18 @@ export const CalendarDateCells = (props: { date: DateMonthYear }) => {
     // Loop through the days in the month and add them to the cells array
     for (let i = 1; i <= daysInMonth; i++) {
       let dayOfMonth = i;
-      cells.push(<CalendarCell day={dayOfMonth} cellType={"curr"} />);
+
+      cells.push(
+        <CalendarCell
+          day={dayOfMonth}
+          isCurrentDay={
+            renderedYear === currentDate.year &&
+            renderedMonth === currentDate.month &&
+            i === currentDate.day
+          }
+          cellType={"curr"}
+        />
+      );
     }
 
     // Loop through the days after the last day of the month and add them to the cells array
@@ -101,6 +96,8 @@ export const CalendarDateCells = (props: { date: DateMonthYear }) => {
     return rows;
   }, [
     calendarDateCellsStyles.calendarGridRow,
+    currentDate,
+    date,
     daysInMonth,
     daysInPrevMonth,
     firstDayOfMonth,
