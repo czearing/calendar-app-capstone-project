@@ -1,8 +1,6 @@
 import React from "react";
 import {
   Text,
-  TabList,
-  Tab,
   Button,
   Toolbar as ToolbarComponent,
 } from "@fluentui/react-components";
@@ -83,16 +81,6 @@ export const CalendarToolbar = () => {
       <Text size={500} weight="bold" wrap={false} style={{ minWidth: "180px" }}>
         {monthNames[date.month]} {date.year}
       </Text>
-      {/* <div className={calendarToolbarStyles.grow} /> */}
-      {/* <TabList
-        appearance="subtle"
-        selectedValue={selectedValue}
-        onTabSelect={onTabSelect}
-      >
-        <Tab value="day">Day</Tab>
-        <Tab value="month">Month</Tab>
-        <Tab value="year">Year</Tab>
-      </TabList> */}
       <div className={calendarToolbarStyles.grow} />
       <Button
         onClick={resetDate}

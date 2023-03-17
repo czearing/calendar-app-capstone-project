@@ -16,6 +16,8 @@ import { queryClient } from "../clients/react-query";
 import { AppContainer } from "../components";
 import { useWindowSize } from "../utils";
 
+const fluentProviderStyles = { height: "100%" };
+
 export default function App(props: AppProps) {
   const { Component, pageProps } = props as any;
   const isDarkTheme = useThemeDetector();
@@ -66,14 +68,20 @@ export default function App(props: AppProps) {
             background-color: ${theme.colorNeutralBackground2};
             padding: 0px;
             margin: 0px;
-            overflow-x: hidden;
+            height: 100%;
+          }
+          html {
+            height: 100%;
+          }
+          #__next {
+            height: 100%;
           }
         `}</style>
         <RendererProvider renderer={pageProps.renderer || createDOMRenderer()}>
           <SSRProvider>
             <AppProvider value={{ setTheme, findTheme }}>
               {isMounted && (
-                <FluentProvider theme={theme}>
+                <FluentProvider theme={theme} style={fluentProviderStyles}>
                   <WindowSizeProvider value={windowSize}>
                     <AppContainer>
                       <Component {...pageProps} />

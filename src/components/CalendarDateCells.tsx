@@ -12,11 +12,15 @@ import { makeStyles, shorthands } from "@griffel/react";
 const useCalendarDateCellsStyles = makeStyles({
   calendarTable: {
     display: "grid",
+    flexDirection: "column",
     backgroundColor: tokens.colorNeutralBackground2,
     width: "100%",
+    height: "calc(100% - 147px)",
+    ...shorthands.overflow("scroll"),
   },
   calendarGridRow: {
     display: "grid",
+    verticalAlign: "top",
     borderCollapse: "collapse",
     gridTemplateColumns: "repeat(7, 1fr)",
     gridTemplateRows: "1fr",
@@ -26,11 +30,13 @@ const useCalendarDateCellsStyles = makeStyles({
   },
 });
 
-const CalendarCellStyles = {
-  height: "100px",
+const CalendarCellStyles: React.CSSProperties = {
+  minHeight: "100px",
+  height: "100%",
   minWidth: "60px",
   verticalAlign: "top",
   padding: "8px",
+  boxSizing: "border-box",
 };
 
 const CalendarCell = (props: { day: number; cellType: string }) => {

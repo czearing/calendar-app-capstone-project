@@ -1,8 +1,10 @@
 import * as React from "react";
 import { daysOfWeekSmall, daysOfWeekMedium, daysOfWeekLarge } from "../utils";
 
-const monthCalendarViewStyles = {
+const monthCalendarViewStyles: React.CSSProperties = {
   padding: "8px",
+  minWidth: "60px",
+  boxSizing: "border-box",
 };
 
 const smallWeekDayHeader = daysOfWeekSmall.map((day, index) => (
