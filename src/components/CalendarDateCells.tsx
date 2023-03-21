@@ -54,7 +54,13 @@ export const CalendarDateCells = (props: { date: DateMonthYear }) => {
     // Loop through the days before the first day of the month and add them to the cells array
     for (let i = firstDayOfMonth - 1; i >= 0; i--) {
       let dayOfMonth = daysInPrevMonth - i;
-      cells.push(<CalendarCell day={dayOfMonth} cellType={"prev"} />);
+      cells.push(
+        <CalendarCell
+          day={dayOfMonth}
+          cellType={"prev"}
+          isDifferentMonth={true}
+        />
+      );
     }
 
     // Loop through the days in the month and add them to the cells array
@@ -79,7 +85,13 @@ export const CalendarDateCells = (props: { date: DateMonthYear }) => {
 
     for (let i = 1; i <= numNextMonthDays; i++) {
       let dayOfMonth = i;
-      cells.push(<CalendarCell day={dayOfMonth} cellType={"next"} />);
+      cells.push(
+        <CalendarCell
+          day={dayOfMonth}
+          cellType={"next"}
+          isDifferentMonth={true}
+        />
+      );
     }
 
     // Split cells into rows
@@ -96,11 +108,14 @@ export const CalendarDateCells = (props: { date: DateMonthYear }) => {
     return rows;
   }, [
     calendarDateCellsStyles.calendarGridRow,
-    currentDate,
-    date,
+    currentDate.day,
+    currentDate.month,
+    currentDate.year,
     daysInMonth,
     daysInPrevMonth,
     firstDayOfMonth,
+    renderedMonth,
+    renderedYear,
   ]);
 
   return (

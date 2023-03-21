@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  getFirstDayOfMonth,
-  getDaysInMonth,
-  getDaysInPreviousMonth,
-} from "../utils";
 import { tokens } from "@fluentui/react-theme";
-import type { DateMonthYear } from "../utils";
-
 import { makeStyles, shorthands, mergeClasses } from "@griffel/react";
 
 const useCalendarCellStyles = makeStyles({
@@ -31,17 +24,24 @@ const useCalendarCellStyles = makeStyles({
     top: "-3px",
     left: "-5.5px",
   },
+  isDifferentMonth: {
+    color: tokens.colorNeutralForeground4,
+  },
 });
 
 export const CalendarCell = (props: {
   day: number;
   cellType: string;
   isCurrentDay?: Boolean;
+  isDifferentMonth?: Boolean;
 }) => {
   const calendarCellStyles = useCalendarCellStyles();
-  const { day, cellType, isCurrentDay } = props;
+  const { day, cellType, isCurrentDay, isDifferentMonth } = props;
 
-  const calendarCellMergedStyles = mergeClasses(calendarCellStyles.root);
+  const calendarCellMergedStyles = mergeClasses(
+    calendarCellStyles.root,
+    isDifferentMonth && calendarCellStyles.isDifferentMonth
+  );
 
   return (
     <div key={day + "-" + cellType} className={calendarCellMergedStyles}>

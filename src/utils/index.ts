@@ -7,3 +7,4 @@ export * from "./useThemeDetector";
 export * from "./useGetLocal";
 export * from "./getCurrentDayMonthYear";
 export * from "./useWindowSize";
+export * from "./useLocation";
