@@ -3,7 +3,7 @@ import { tokens } from "@fluentui/react-theme";
 import { makeStyles, shorthands, mergeClasses } from "@griffel/react";
 import { useWeather } from "../context";
 import type { DateMonthYear } from "../utils";
-import { stringToYearMonthDayString } from "../utils";
+import { stringToYearMonthDayString, monthShortNames } from "../utils";
 import { WeatherIcon } from "./WeatherIcon";
 
 const useCalendarCellStyles = makeStyles({
@@ -49,10 +49,19 @@ export const CalendarCell = (props: {
   cellType: string;
   currentDate: DateMonthYear;
   isRenderedMonth: boolean;
+  firstRenderedDay?: boolean;
 }) => {
   const { weather } = useWeather();
   const calendarCellStyles = useCalendarCellStyles();
-  const { day, month, year, cellType, currentDate, isRenderedMonth } = props;
+  const {
+    firstRenderedDay,
+    day,
+    month,
+    year,
+    cellType,
+    currentDate,
+    isRenderedMonth,
+  } = props;
 
   const yearMonthDayString = stringToYearMonthDayString(day, month, year);
 
@@ -77,6 +86,7 @@ export const CalendarCell = (props: {
             isCurrentDay ? calendarCellStyles.currentDayCellStyles : ""
           }
         >
+          {(firstRenderedDay || day === 1) && monthShortNames[month] + " "}
           {day}
         </div>
         {weather && (weather as any)[yearMonthDayString] && (

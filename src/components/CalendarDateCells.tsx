@@ -53,6 +53,7 @@ export const CalendarDateCells = (props: { date: DateMonthYear }) => {
     // Loop through the days before the first day of the month and add them to the cells array
     for (let i = firstDayOfMonth - 1; i >= 0; i--) {
       let dayOfMonth = daysInPrevMonth - i;
+
       cells.push(
         <CalendarCell
           day={dayOfMonth}
@@ -61,6 +62,7 @@ export const CalendarDateCells = (props: { date: DateMonthYear }) => {
           cellType={"prev"}
           currentDate={currentDate}
           isRenderedMonth={false}
+          firstRenderedDay={i === firstDayOfMonth - 1}
         />
       );
     }
