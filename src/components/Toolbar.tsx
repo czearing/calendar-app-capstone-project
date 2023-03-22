@@ -12,7 +12,7 @@ import {
 } from "@fluentui/react-components";
 import type { MenuProps } from "@fluentui/react-components";
 import Link from "next/link";
-import { makeStyles, shorthands } from "@griffel/react";
+import { makeStyles } from "@griffel/react";
 import { tokens } from "@fluentui/react-theme";
 import { useAppContext } from "../context";
 

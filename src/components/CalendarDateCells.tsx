@@ -17,7 +17,7 @@ const useCalendarDateCellsStyles = makeStyles({
     backgroundColor: tokens.colorNeutralBackground2,
     width: "100%",
     height: "calc(100% - 147px)",
-    ...shorthands.overflow("scroll"),
+    ...shorthands.overflow("auto"),
   },
   calendarGridRow: {
     display: "grid",
@@ -40,7 +40,6 @@ export const CalendarDateCells = (props: { date: DateMonthYear }) => {
 
   // Calculate the necessary date information for the calendar.
   const currentDate = getCurrentDayMonthYear();
-
   const firstDayOfMonth = getFirstDayOfMonth(renderedMonth, renderedYear);
   const daysInMonth = getDaysInMonth(renderedMonth, renderedYear);
   const daysInPrevMonth = getDaysInPreviousMonth(renderedMonth, renderedYear);
@@ -57,8 +56,11 @@ export const CalendarDateCells = (props: { date: DateMonthYear }) => {
       cells.push(
         <CalendarCell
           day={dayOfMonth}
+          month={renderedMonth - 1}
+          year={renderedYear}
           cellType={"prev"}
-          isDifferentMonth={true}
+          currentDate={currentDate}
+          isRenderedMonth={false}
         />
       );
     }
@@ -66,16 +68,14 @@ export const CalendarDateCells = (props: { date: DateMonthYear }) => {
     // Loop through the days in the month and add them to the cells array
     for (let i = 1; i <= daysInMonth; i++) {
       let dayOfMonth = i;
-
       cells.push(
         <CalendarCell
           day={dayOfMonth}
-          isCurrentDay={
-            renderedYear === currentDate.year &&
-            renderedMonth === currentDate.month &&
-            i === currentDate.day
-          }
+          month={renderedMonth}
+          year={renderedYear}
+          currentDate={currentDate}
           cellType={"curr"}
+          isRenderedMonth={true}
         />
       );
     }
@@ -88,8 +88,11 @@ export const CalendarDateCells = (props: { date: DateMonthYear }) => {
       cells.push(
         <CalendarCell
           day={dayOfMonth}
+          month={renderedMonth + 1}
+          year={renderedYear}
           cellType={"next"}
-          isDifferentMonth={true}
+          currentDate={currentDate}
+          isRenderedMonth={false}
         />
       );
     }
@@ -105,12 +108,11 @@ export const CalendarDateCells = (props: { date: DateMonthYear }) => {
         </div>
       );
     }
+
     return rows;
   }, [
     calendarDateCellsStyles.calendarGridRow,
-    currentDate.day,
-    currentDate.month,
-    currentDate.year,
+    currentDate,
     daysInMonth,
     daysInPrevMonth,
     firstDayOfMonth,

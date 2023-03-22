@@ -1,23 +1,29 @@
 import type { QueryFunctionContext } from "react-query";
-
-type WeatherData = {
-  name: string;
-  main: {
-    temp: number;
-    feels_like: number;
-    humidity: number;
-  };
-  weather: {
-    id: number;
-    main: string;
-    description: string;
-  }[];
-};
+import type { WeatherData } from "../context";
 
 type WeatherQueryKey = [
   _key: string,
   location: { lat: number | null; lng: number | null } | null
 ];
+
+const cleanWeatherJson = (data: WeatherData) => {
+  let cleanedData: any = {};
+
+  const intervals = data.data.timelines[0].intervals;
+
+  for (let interval of intervals) {
+    let startTime = interval.startTime;
+    let weatherCode = interval.values.weatherCode;
+    let temperature = interval.values.temperature;
+
+    let date = startTime.slice(0, 10);
+
+    cleanedData[date] = { weatherCode, temperature };
+  }
+
+  // Return the cleanedData object
+  return cleanedData;
+};
 
 export async function fetchWeather(
   context: QueryFunctionContext<WeatherQueryKey>
@@ -25,7 +31,7 @@ export async function fetchWeather(
   const [_key, location] = context.queryKey;
 
   const res = await fetch(
-    `https://api.tomorrow.io/v4/timelines?location=${location?.lat},${location?.lng}&fields=weatherCode&timesteps=1d&units=metric&apikey=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}`,
+    `https://api.tomorrow.io/v4/timelines?location=${location?.lat},${location?.lng}&fields=weatherCode,temperature&timesteps=1d&units=metric&apikey=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}`,
 
     {
       method: "GET",
@@ -34,5 +40,5 @@ export async function fetchWeather(
 
   const data = await res.json();
 
-  return data;
+  return cleanWeatherJson(data);
 }

@@ -1,0 +1,45 @@
+// import type { QueryFunctionContext } from "react-query";
+// import ICAL from "ical.js";
+
+// type IcalQueryKey = [_key: string, url: string];
+
+// export async function fetchIcal(context: QueryFunctionContext<IcalQueryKey>) {
+//   const [_key, url] = context.queryKey;
+
+//   try {
+//     const response = await fetch(url, { mode: "no-cors" });
+//     const data = await response.text();
+
+//     // parse the data into a jCal object using ICAL.parse
+//     // const jCalData = ICAL.parse(data);
+
+//     // // create a component from the jCal object using ICAL.Component
+//     // const comp = new ICAL.Component(jCalData);
+
+//     // // get all the events from the component using getAllSubcomponents
+//     // const events = comp.getAllSubcomponents("vevent");
+
+//     // // loop through the events and log them
+//     // for (const event of events) {
+//     //   // create an event object from each event component using ICAL.Event
+//     //   const evt = new ICAL.Event(event);
+
+//     //   console.log(
+//     //     "Summary: " +
+//     //       evt.summary +
+//     //       "\nDescription: " +
+//     //       evt.description +
+//     //       "\nStart Date: " +
+//     //       evt.startDate.toJSDate().toISOString() +
+//     //       "\n"
+//     //   );
+//     // }
+
+//     // return the events array
+//     return response;
+//   } catch (error) {
+//     // handle any errors
+//     console.error(error);
+//     throw error;
+//   }
+// }
