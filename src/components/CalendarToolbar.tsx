@@ -9,7 +9,7 @@ import {
   ChevronUp24Regular,
 } from "@fluentui/react-icons";
 import { makeStyles, shorthands } from "@griffel/react";
-import { monthNames, getCurrentDayMonthYear } from "../utils";
+import { monthNamesLarge, getCurrentDayMonthYear } from "../utils";
 import { tokens } from "@fluentui/react-theme";
 import { useDate } from "../context";
 
@@ -79,7 +79,7 @@ export const CalendarToolbar = () => {
   return (
     <ToolbarComponent className={calendarToolbarStyles.root}>
       <Text size={500} weight="bold" wrap={false} style={{ minWidth: "180px" }}>
-        {monthNames[date.month]} {date.year}
+        {monthNamesLarge[date.month]} {date.year}
       </Text>
       <div className={calendarToolbarStyles.grow} />
       <Button

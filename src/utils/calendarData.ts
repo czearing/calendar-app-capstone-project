@@ -20,7 +20,22 @@ export const daysOfWeekLarge: string[] = [
   "Saturday",
 ];
 
-export const monthShortNames: string[] = [
+export const monthNamesShort: string[] = [
+  "J",
+  "F",
+  "M",
+  "A",
+  "M",
+  "J",
+  "J",
+  "A",
+  "S",
+  "O",
+  "N",
+  "D",
+];
+
+export const monthNamesMedium: string[] = [
   "Jan",
   "Feb",
   "Mar",
@@ -35,21 +50,7 @@ export const monthShortNames: string[] = [
   "Dec",
 ];
 
-export type MonthNames =
-  | "January"
-  | "February"
-  | "March"
-  | "April"
-  | "May"
-  | "June"
-  | "July"
-  | "August"
-  | "September"
-  | "October"
-  | "November"
-  | "December";
-
-export const monthNames: MonthNames[] = [
+export const monthNamesLarge: string[] = [
   "January",
   "February",
   "March",

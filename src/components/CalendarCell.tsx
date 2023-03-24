@@ -1,9 +1,9 @@
 import React from "react";
 import { tokens } from "@fluentui/react-theme";
 import { makeStyles, shorthands, mergeClasses } from "@griffel/react";
-import { useWeather } from "../context";
-import type { DateMonthYear } from "../utils";
-import { stringToYearMonthDayString, monthShortNames } from "../utils";
+import { useWeather, useWindowSize } from "../context";
+import { DateMonthYear, monthNamesLarge, monthNamesShort } from "../utils";
+import { stringToYearMonthDayString, monthNamesMedium } from "../utils";
 import { WeatherIcon } from "./WeatherIcon";
 
 const useCalendarCellStyles = makeStyles({
@@ -52,6 +52,7 @@ export const CalendarCell = (props: {
   firstRenderedDay?: boolean;
 }) => {
   const { weather } = useWeather();
+  const windowSize = useWindowSize();
   const calendarCellStyles = useCalendarCellStyles();
   const {
     firstRenderedDay,
@@ -86,19 +87,27 @@ export const CalendarCell = (props: {
             isCurrentDay ? calendarCellStyles.currentDayCellStyles : ""
           }
         >
-          {(firstRenderedDay || day === 1) && monthShortNames[month] + " "}
+          {(firstRenderedDay || day === 1) &&
+            (windowSize === "lg"
+              ? monthNamesLarge[month] + " "
+              : windowSize === "md"
+              ? monthNamesMedium[month] + " "
+              : "")}
           {day}
         </div>
-        {weather && (weather as any)[yearMonthDayString] && (
-          <div className={calendarCellStyles.weatherWrapper}>
-            {Math.round(
-              (weather as any)[yearMonthDayString].temperature * 1.8 + 32
-            ) + "°"}
-            <WeatherIcon
-              weatherCode={(weather as any)[yearMonthDayString].weatherCode}
-            />
-          </div>
-        )}
+        {weather &&
+          windowSize !== "sm" &&
+          (weather as any)[yearMonthDayString] && (
+            <div className={calendarCellStyles.weatherWrapper}>
+              {windowSize !== "md" &&
+                Math.round(
+                  (weather as any)[yearMonthDayString].temperature * 1.8 + 32
+                ) + "°"}
+              <WeatherIcon
+                weatherCode={(weather as any)[yearMonthDayString].weatherCode}
+              />
+            </div>
+          )}
       </div>
     </div>
   );
