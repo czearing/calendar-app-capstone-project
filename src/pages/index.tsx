@@ -5,6 +5,7 @@ import { MonthCalendarView, CalendarToolbar } from "../components";
 import { getCurrentDayMonthYear, useLocation } from "../utils";
 import { useQuery } from "react-query";
 import { fetchWeather } from "../server";
+import { useSession } from "next-auth/react";
 
 const IndexPage = () => {
   const [date, setDate] = React.useState(getCurrentDayMonthYear());
