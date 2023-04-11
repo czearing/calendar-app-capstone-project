@@ -14,6 +14,10 @@ const useCalendarCellStyles = makeStyles({
     verticalAlign: "top",
     ...shorthands.padding("8px"),
     boxSizing: "border-box",
+    ...shorthands.borderLeft("1px", "solid", tokens.colorNeutralStroke1),
+  },
+  currentDayCellBackgroundStyles: {
+    backgroundColor: tokens.colorNeutralBackground4,
   },
   currentDayCellStyles: {
     position: "relative",
@@ -73,6 +77,7 @@ export const CalendarCell = (props: {
 
   const calendarCellMergedStyles = mergeClasses(
     calendarCellStyles.root,
+    isCurrentDay && calendarCellStyles.currentDayCellBackgroundStyles,
     !isRenderedMonth && calendarCellStyles.isDifferentMonth
   );
 
