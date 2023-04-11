@@ -1,7 +1,11 @@
 import * as React from "react";
 import { DateProvider, WeatherProvider } from "../context";
 import type { WeatherData } from "../context";
-import { MonthCalendarView, CalendarToolbar } from "../components";
+import {
+  MonthCalendarView,
+  CalendarToolbar,
+  CalendarManagerSidebar,
+} from "../components";
 import { getCurrentDayMonthYear, useLocation } from "../utils";
 import { useQuery } from "react-query";
 import { fetchWeather } from "../server";
@@ -31,6 +35,7 @@ const IndexPage = () => {
     <DateProvider value={{ date, setDate }}>
       <WeatherProvider value={{ weather, setWeather }}>
         <CalendarToolbar />
+        {/* <CalendarManagerSidebar /> */}
         <MonthCalendarView />
       </WeatherProvider>
     </DateProvider>

@@ -12,7 +12,6 @@ const useMonthCalendarViewStyles = makeStyles({
     height: "50px",
     gridTemplateColumns: "repeat(7, 1fr)",
     gridTemplateRows: "1fr",
-    gridGap: "5px",
     alignItems: "end",
     ...shorthands.borderBottom("1px", "solid", tokens.colorNeutralStroke1),
   },

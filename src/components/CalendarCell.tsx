@@ -28,8 +28,8 @@ const useCalendarCellStyles = makeStyles({
     backgroundColor: tokens.colorBrandBackground,
     textAlign: "center",
     top: "-3px",
-    left: "-5.5px",
-    lineHeight: "24px",
+    left: "-5.7px",
+    lineHeight: "26px",
   },
   isDifferentMonth: {
     color: tokens.colorNeutralForeground4,

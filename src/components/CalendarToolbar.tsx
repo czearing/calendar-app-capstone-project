@@ -24,7 +24,8 @@ const useCalendarToolbarStyles = makeStyles({
     alignItems: "center",
     boxSizing: "border-box",
     flexShrink: 0,
-    ...shorthands.borderBottom("1px", "solid", tokens.colorNeutralStroke1),
+
+    // ...shorthands.borderBottom("1px", "solid", tokens.colorNeutralStroke1),
     backgroundColor: tokens.colorNeutralBackground1,
   },
   grow: {
@@ -78,9 +79,20 @@ export const CalendarToolbar = () => {
 
   return (
     <ToolbarComponent className={calendarToolbarStyles.root}>
-      <Text size={500} weight="bold" wrap={false} style={{ minWidth: "180px" }}>
-        {monthNamesLarge[date.month]} {date.year}
-      </Text>
+      <div>
+        <Text
+          size={700}
+          weight="bold"
+          wrap={false}
+          style={{ minWidth: "180px" }}
+        >
+          {monthNamesLarge[date.month] + " "}
+        </Text>
+        <Text size={700} wrap={false} style={{ minWidth: "180px" }}>
+          {date.year}
+        </Text>
+      </div>
+
       <div className={calendarToolbarStyles.grow} />
       <Button
         onClick={resetDate}
