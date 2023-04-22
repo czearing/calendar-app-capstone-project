@@ -47,12 +47,11 @@ export const SignInDialog = () => {
       <DialogSurface className={signInDialogStyles.dialogRoot}>
         <Image
           src="/image/signinArt.svg"
-          alt="Calendar app logo"
+          alt="Calendar app company logo"
           height={200}
           width={200}
         />
         <DialogTitle>Stay organized, achieve your goals</DialogTitle>
-
         <div className={signInDialogStyles.signInButtonWrapper}>
           {providers &&
             Object.values(providers).map((provider: any, index) => (
