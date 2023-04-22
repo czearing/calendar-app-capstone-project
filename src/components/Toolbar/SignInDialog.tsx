@@ -45,15 +45,13 @@ export const SignInDialog = () => {
         <Button>Sign in</Button>
       </DialogTrigger>
       <DialogSurface className={signInDialogStyles.dialogRoot}>
-        <div>
-          <Image
-            src="/image/signinArt.svg"
-            alt="Calendar app logo"
-            height={200}
-            width={200}
-          />
-          <DialogTitle>Stay organized, achieve your goals</DialogTitle>
-        </div>
+        <Image
+          src="/image/signinArt.svg"
+          alt="Calendar app logo"
+          height={200}
+          width={200}
+        />
+        <DialogTitle>Stay organized, achieve your goals</DialogTitle>
 
         <div className={signInDialogStyles.signInButtonWrapper}>
           {providers &&

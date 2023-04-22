@@ -24,8 +24,6 @@ const useCalendarToolbarStyles = makeStyles({
     alignItems: "center",
     boxSizing: "border-box",
     flexShrink: 0,
-
-    // ...shorthands.borderBottom("1px", "solid", tokens.colorNeutralStroke1),
     backgroundColor: tokens.colorNeutralBackground1,
   },
   grow: {
